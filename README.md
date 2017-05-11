@@ -4,6 +4,8 @@ I thought it might be nice to chain methods when scripting against the DOM witho
 
 Loading `tag.js` gives you a global `t` variable.
 
+**There's a good chance this README will not stay up to date as I play around. Just check out `examples.js`.**
+
 Suppose you have a `div` with an id of "app". The following creates a `p` element and you then append it to the `div`.
 
 ```javascript
@@ -78,5 +80,7 @@ Questions/Problems:
 
 - How far does this get me?
 - Too verbose?
-- `.appendTo()` just selects id's
+- `.appendTo()` just selects id's. (fixed)
 - nodes vs. html tags
+- update readme
+- think about syntax
