@@ -19,16 +19,33 @@ var note = 'Another "p" element appended to "app" that\'s slightly more convenie
 
 t('p')
   .withText(note)
-  .appendTo('app')
+  .appendTo('#app')
 
 t('a')
   .withText('A link to Google')
   .setAttr('href')
   .withValue('https://google.com')
-  .appendTo('app')
+  .appendTo('#app')
 
 t('p')
   .useMethod('textContent')
   .withValue('Setting the textContent of the element without "withText"')
-  .appendTo('app')
+  .appendTo('#app')
 
+// Test with class selector
+t('p')
+  .withText('This should show up multiple times')
+  .appendTo('.test-class')
+
+t('div')
+  .setAttr('className')
+  .withValue('blah')
+  .withChild(
+    t('p')
+      .withText('blah')
+      .done())
+  .withChild(
+    t('p')
+      .withText('blah again')
+      .done())
+  .appendTo('body')

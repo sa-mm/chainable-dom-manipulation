@@ -6,6 +6,7 @@ var t = function (tag) {
 
 var Tag = function (tag) {
   this.queue = []
+  this.tag = tag
   this.element = document.createElement(tag)
   return this
 }
@@ -20,9 +21,16 @@ Tag.prototype.withChild = function (element) {
   return this
 }
 
-Tag.prototype.appendTo = function (id) {
-  var parent = document.getElementById(id)
-  parent.appendChild(this.element)
+Tag.prototype.appendTo = function (selector) {
+  function getElements (selector) {
+    return document.querySelectorAll(selector)
+  }
+  var parents = getElements(selector)
+
+  for (var i = 0; i < parents.length; i++) {
+    var child = this.element.cloneNode(true)
+    parents[i].appendChild(child)
+  }
   return this
 }
 
@@ -39,8 +47,8 @@ Tag.prototype.useMethod = function (methodName) {
 }
 
 Tag.prototype.withValue = function (value) {
-  var last = this.queue[this.queue.length - 1]
-  this.element[last] = value
+  var setAttributeOrMethod = this.queue[this.queue.length - 1]
+  this.element[setAttributeOrMethod] = value
   return this
 }
 
